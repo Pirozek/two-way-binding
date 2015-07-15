@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		ul { list-style: none; margin: 0; padding: 0; }
+		li { margin: .5rem 0; }
+		p { margin: 1rem 0; }
+		p span { font-weight: bold; }
+	</style>
+</head>
+<body>
+	<form id="form">
+		<ul>
+			<li>
+				<label for="first-name-el">First name</label>
+				<input id="first-name-el"/>
+			</li>
+			<li>
+				<label for="last-name-el">Last name</label>
+				<input id="last-name-el"/>
+			</li>
+		</ul>
+		<p>
+			Full name: <span id="full-name-el">-</span>
+		</p>
+	</form>
+	<script>
+		window.onload = function() {
+
+			var firstNameInput = document.getElementById('first-name-el'),
+				lastNameInput = document.getElementById('last-name-el'),
+				fullNameSpan = document.getElementById('full-name-el'),
+				formEl = document.getElementById('form');
+
+			Element.prototype.twoWayBind = twoWayBindingFn;
+
+		/* --------------------------------
+		 *
+		 * firstNameInput.value = "Luke";
+		 * fullNameSpan.innerText = "Luke Skyrunner";
+		 *
+		 * document.querySelectorAll('.someClass') => [el, el, el...]
+		 */
+
+			window.person = {
+				firstName: 'Luke',
+				lastName: 'Skyrunner'
+			};
+
+			formEl.twoWayBind(window.person);
+
+			function twoWayBindingFn(data) {
+
+				// 1. zmena v inputu by mela automaticky zmenit hodnotu patricne vlastnosti v objektu window.person
+				// 2. zmena vlastnosti v objektu window.person by mela zpusobit aktualizaci UI
+				// 3. pozor na cykly
+
+			};
+
+		};
+	</script>
+</body>
+</html>
